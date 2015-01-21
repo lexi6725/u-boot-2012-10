@@ -1,0 +1,1 @@
+/work/u-boot-2012.10/board/samsung/smdk6400/lowlevel_init.S

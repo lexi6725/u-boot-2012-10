@@ -1,0 +1,30 @@
+#!/bin/sh
+
+make $1
+
+echo "Make dong"
+
+rm -f u-boot-hand.bin
+
+cat nand_spl/u-boot-spl-16k.bin >> temp
+
+cat zero-16k.bin >> temp
+
+split -b 4k temp
+
+mv xaa u-boot-4k.bin
+
+cat u-boot-4k.bin >> u-boot-hand.bin
+
+cat u-boot.bin >> u-boot-hand.bin
+
+rm -f temp
+rm -f u-boot-4k.bin
+rm -f x*
+
+
+cp u-boot.bin /work/tftpboot/
+echo "cp u-boot.bin /work/tftpboot"
+
+cp u-boot-hand.bin /work/tftpboot/u-boot-nand.bin
+echo "cp u-boot-nand.bin /work/tftpboot"
